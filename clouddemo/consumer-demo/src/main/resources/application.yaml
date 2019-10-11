@@ -1,0 +1,19 @@
+server:
+  port: 8080
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka,http://localhost:8001/eureka
+    registry-fetch-interval-seconds: 5 #拉取服务列表的时长
+spring:
+  application:
+    name: consumer-service
+# 更改Ribbon负载均衡的算法，由默认改为随机
+user-service:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+# 更改默认超时访问时间，毫秒为单位
+hystrix:
+  command:
+    default:
+      execution.isolation.thread.timeoutInMilliseconds: 4000
